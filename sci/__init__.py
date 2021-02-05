@@ -14,7 +14,6 @@ __version__ = "0.1.3"
 
 import sci.compute
 import sci.store
-import sci.db
 import sci.fh
 import sci.json
 import sci.tools
