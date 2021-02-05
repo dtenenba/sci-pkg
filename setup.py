@@ -23,8 +23,6 @@ CLASSIFIERS = [
     "Topic :: System :: Systems Administration",
     "Topic :: Utilities"
 ]
-OSPKG_APT=['fping','unixodbc-dev']
-OSPKG_YUM=['fping','unixODBC-devel']
 
 class CustomInstall(install):
     def run(self):
@@ -38,14 +36,6 @@ class CustomInstall(install):
             #print('    package installed in %s' % install_path)
 
         # Add your post install code here
-        if os.path.exists('/usr/bin/apt-get'):
-            inst=['apt-get', 'install', '-y']
-            print('    executing %s ...' % " ".join(inst+OSPKG_APT)) 
-            subprocess.Popen(inst+OSPKG_APT)
-        elif os.path.exists('/usr/bin/yum'):
-            inst=['yum', 'install']
-            print('    executing %s ...' % " ".join(inst+OSPKG_YUM))
-            subprocess.Popen(inst+OSPKG_YUM)
 
         atexit.register(_post_install)
         install.run(self)
@@ -68,9 +58,6 @@ setup(
     install_requires=[
         'requests',
         'python-hostlist',
-        'psycopg2-binary',
-        'PyMySQL',
-        'pyodbc',
         'python-swiftclient',
         'python-keystoneclient',
         ],
